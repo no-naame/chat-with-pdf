@@ -8,13 +8,13 @@ import { Input } from "@/components/ui/input"
 import { ArrowRight, Loader2 } from 'lucide-react'
 import { sendMessage } from '@/lib/api'
 import { toast } from 'react-hot-toast'
-
+import { Suspense } from 'react'
 interface Message {
     role: 'user' | 'assistant'
     content: string
 }
 
-export default function Chat() {
+function ChatComponent() {
     const searchParams = useSearchParams()
     const sessionId = searchParams.get('session_id')
     const [messages, setMessages] = useState<Message[]>([])
@@ -123,4 +123,10 @@ export default function Chat() {
         </MaxWidthWrapper>
     )
 }
-
+export default function Chat() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ChatComponent/>
+        </Suspense>
+    )
+}

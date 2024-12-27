@@ -10,10 +10,6 @@ import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { uploadPDF } from '@/lib/api'
 
-interface CustomProgressProps extends React.HTMLAttributes<HTMLDivElement> {
-    value: number;
-    indicatorClassName?: string;
-}
 
 export default function UploadPage() {
     const [isUploading, setIsUploading] = useState(false)

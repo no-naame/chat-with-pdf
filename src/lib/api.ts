@@ -1,4 +1,8 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8002';
+interface ChatMessage {
+    role: 'user' | 'assistant';
+    content: string;
+}
 
 export async function uploadPDF(file: File, sessionId: string) {
     const formData = new FormData();
@@ -16,7 +20,7 @@ export async function uploadPDF(file: File, sessionId: string) {
     return response.json();
 }
 
-export async function sendMessage(sessionId: string, question: string, chatHistory: any[]) {
+export async function sendMessage(sessionId: string, question: string, chatHistory: ChatMessage[]) {
     const response = await fetch(`${API_URL}/chat/`, {
         method: 'POST',
         headers: {
